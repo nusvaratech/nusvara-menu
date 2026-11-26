@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://fycnvhkeuwyqjcymjgdi.supabase.co; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#1C1C1E">
+  <title>Menu</title>
+  <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+  <header class="top" id="top">
+    <div>
+      <h1 id="store-name">Menu</h1>
+      <p id="table-label"></p>
+    </div>
+  </header>
+  <div class="notice" id="notice" hidden></div>
+  <nav class="cats" id="cats" aria-label="Kategori"></nav>
+  <main id="menu" aria-live="polite"><p class="loading">Memuat menu…</p></main>
+
+  <button class="cart-bar" id="cart-bar" type="button" hidden>
+    <span><b id="cart-count">0</b> item</span>
+    <strong id="cart-total">Rp 0</strong>
+    <span>Lihat pesanan ›</span>
+  </button>
+
+  <dialog id="item-sheet" class="sheet" aria-labelledby="item-title">
+    <form method="dialog" id="item-form">
+      <div class="sheet-head"><h2 id="item-title"></h2><button type="button" class="x" data-close aria-label="Tutup">×</button></div>
+      <img id="item-photo" alt="" hidden>
+      <p id="item-desc" class="muted"></p>
+      <div id="item-options"></div>
+      <label class="field">Catatan untuk menu ini (opsional)<textarea id="item-note" maxlength="120" rows="2" placeholder="Mis. tanpa es, pedas sedang"></textarea></label>
+      <div class="sheet-foot">
+        <div class="qty" role="group" aria-label="Jumlah"><button type="button" data-qty="-1" aria-label="Kurangi">−</button><span id="item-qty">1</span><button type="button" data-qty="1" aria-label="Tambah">+</button></div>
+        <button type="submit" class="primary" id="item-add">Tambah</button>
+      </div>
+      <p class="error" id="item-error" role="alert"></p>
+    </form>
+  </dialog>
+
+  <dialog id="cart-sheet" class="sheet" aria-labelledby="cart-title">
+    <div class="sheet-head"><h2 id="cart-title">Pesanan Anda</h2><button type="button" class="x" data-close aria-label="Tutup">×</button></div>
+    <ul id="cart-lines" class="lines"></ul>
+    <label class="field">Nama Anda (supaya mudah dipanggil)<input id="cart-name" maxlength="40" autocomplete="given-name" placeholder="Mis. Rani"></label>
+    <label class="field">Catatan untuk kasir (opsional)<textarea id="cart-note" maxlength="200" rows="2" placeholder="Mis. minta sendok tambahan"></textarea></label>
+    <div class="sum"><span>Total</span><strong id="cart-sum">Rp 0</strong></div>
+    <button type="button" class="primary wide" id="cart-send">Kirim pesanan ke kasir</button>
+    <p class="muted center">Pesanan dicek kasir dulu. Bayar di kasir setelah pesanan diterima.</p>
+    <p class="error" id="cart-error" role="alert"></p>
+  </dialog>
+
+  <section class="status" id="status" hidden aria-live="polite">
+    <div class="status-icon" id="status-icon">⏳</div>
+    <h2 id="status-title">Menunggu kasir…</h2>
+    <p id="status-text" class="muted"></p>
+    <ul id="status-lines" class="lines compact"></ul>
+    <button type="button" class="primary wide" id="status-again" hidden>Pesan lagi</button>
+  </section>
+
+  <footer class="foot">Pemesanan lewat Nusvara Cashier</footer>
+  <script src="menu.js"></script>
+</body>
+</html>
